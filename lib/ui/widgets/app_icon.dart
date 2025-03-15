@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:get_apps/app_info.dart';
+import 'package:get_apps/models.dart';
 import 'package:get_apps/get_apps.dart';
+import 'package:zero_launcher/models/app_model.dart';
 
 class AppClickableIcon extends StatelessWidget {
-  final AppInfo appInfo;
+  final AppModel appInfo;
   const AppClickableIcon({Key? key, required this.appInfo}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ()=>GetApps().openApp(appInfo.appPackage),
+      onTap: () => GetApps().openApp(appInfo.packageName),
       focusColor: Colors.transparent,
       hoverColor: Colors.transparent,
       highlightColor: Colors.transparent,
@@ -18,17 +19,18 @@ class AppClickableIcon extends StatelessWidget {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           boxShadow: [
-            BoxShadow(
-                color: Colors.black45,
-                spreadRadius: 5,
-                blurRadius: 10
-            )
+            BoxShadow(color: Colors.black45, spreadRadius: 5, blurRadius: 10),
           ],
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(100),
-          child: Image.memory(
-            appInfo.appIcon,height : 80, width : 80,
+          child: Container(
+            width: 80,
+            height: 80,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(image: appInfo.appIcon)
+            ),
           ),
         ),
       ),

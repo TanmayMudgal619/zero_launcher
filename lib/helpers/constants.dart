@@ -19,5 +19,5 @@ List<String> dayName = [
   "Wednesday",
   "Thursday",
   "Friday",
-  "Saturday"
+  "Saturday",
 ];

@@ -1,9 +1,7 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:get_apps/app_info.dart';
+import 'package:get_apps/models.dart';
 
-class AppModel{
+class AppModel {
   String appName;
   String packageName;
   MemoryImage appIcon;
@@ -11,14 +9,14 @@ class AppModel{
   AppModel({
     required this.appName,
     required this.packageName,
-    required this.appIcon
+    required this.appIcon,
   });
 
-  factory AppModel.fromAppInfo(AppInfo appInfo){
+  factory AppModel.fromAppInfo(AppInfo appInfo) {
     return AppModel(
       appName: appInfo.appName,
       packageName: appInfo.appPackage,
-      appIcon: MemoryImage(appInfo.appIcon)
+      appIcon: MemoryImage(appInfo.appIcon),
     );
   }
 }
