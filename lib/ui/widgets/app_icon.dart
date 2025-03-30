@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get_apps/models.dart';
 import 'package:get_apps/get_apps.dart';
 import 'package:zero_launcher/models/app_model.dart';
 
-class AppClickableIcon extends StatelessWidget {
+class AppIcon extends StatelessWidget {
   final AppModel appInfo;
-  const AppClickableIcon({Key? key, required this.appInfo}) : super(key: key);
+  const AppIcon({super.key, required this.appInfo});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +28,7 @@ class AppClickableIcon extends StatelessWidget {
             height: 80,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              image: DecorationImage(image: appInfo.appIcon)
+              image: DecorationImage(image: appInfo.appIcon),
             ),
           ),
         ),

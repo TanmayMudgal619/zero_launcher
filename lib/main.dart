@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zero_launcher/services/apps_service.dart';
+import 'package:zero_launcher/services/background_service.dart';
 import 'package:zero_launcher/ui/pages/home_page.dart';
 
 void main() => runApp(
   MultiProvider(
-    providers: [ChangeNotifierProvider(create: (_) => AppsService())],
+    providers: [
+      ChangeNotifierProvider(create: (_) => AppsService()),
+      ChangeNotifierProvider(create: (_) => BackGroundColorsService())
+    ],
     child: const App(),
   ),
 );

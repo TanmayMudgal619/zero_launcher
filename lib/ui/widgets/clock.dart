@@ -46,7 +46,7 @@ class _CustomClockState extends State<CustomClock> {
         Expanded(
           child: ListTile(
             title: Text(
-              "${hour == 0 ? 12 : hour} : $minute\n ${monthName[curTime.month]} ${curTime.day}",
+              "${hour == 0 ? 12 : hour.toString().padLeft(2, '0')} : $minute\n ${monthName[curTime.month]} ${curTime.day}",
               style: const TextStyle(
                 color: Colors.white70,
                 height: 1,
@@ -106,7 +106,7 @@ class ClockPainter extends CustomPainter {
           ..maskFilter = const MaskFilter.blur(BlurStyle.outer, 5);
     Paint paintMinute =
         Paint()
-          ..color = const Color(0xff021f1c)
+          ..color = Colors.blueGrey.withValues(alpha: 0.7)
           ..style = PaintingStyle.fill;
     Paint paintMinuteShadow =
         Paint()
@@ -115,7 +115,7 @@ class ClockPainter extends CustomPainter {
           ..maskFilter = const MaskFilter.blur(BlurStyle.outer, 5);
     Paint paintSecond =
         Paint()
-          ..color = const Color(0xff0d6767)
+          ..color = Colors.blueGrey
           ..style = PaintingStyle.fill;
     Paint paintSecondShadow =
         Paint()
