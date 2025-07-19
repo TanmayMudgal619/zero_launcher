@@ -4,30 +4,27 @@ import 'package:zero_launcher/models/app_model.dart';
 
 class AppsService with ChangeNotifier {
   late GetApps _getApps;
-  List<AppModel>? apps;
+  late Future<List<AppModel>> apps;
 
   AppsService() {
     _getApps = GetApps();
-    loadApps();
+    loadAppsAndNotify();
     listenPackageActions();
   }
 
-  loadApps() async {
-    apps =
-        (await _getApps.getApps())
-            .map((appInfo) => AppModel.fromAppInfo(appInfo))
-            .toList();
+  Future<List<AppModel>> loadApps() async{
+    final apps = (await _getApps.getApps());
+    return apps.map((appInfo) => AppModel.fromAppInfo(appInfo)).toList();
+  }
+
+  loadAppsAndNotify() {
+    apps = loadApps();
     notifyListeners();
   }
 
   listenPackageActions() {
     _getApps.appActionReceiver().forEach((action) {
-      if (action.action == "added") {
-        loadApps();
-      } else if (apps != null) {
-        apps!.removeWhere((app) => app.packageName == action.packageName);
-        notifyListeners();
-      }
+      loadAppsAndNotify();
     });
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_apps/models.dart';
 import 'package:get_apps/get_apps.dart';
 import 'package:zero_launcher/models/app_model.dart';
 
@@ -27,7 +26,9 @@ class AppClickableIcon extends StatelessWidget {
           child: Container(
             width: 80,
             height: 80,
+            padding: EdgeInsets.all(20),
             decoration: BoxDecoration(
+              color: Colors.white,
               shape: BoxShape.circle,
               image: DecorationImage(image: appInfo.appIcon)
             ),

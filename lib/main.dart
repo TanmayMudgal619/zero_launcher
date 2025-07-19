@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:zero_launcher/routes.dart';
 import 'package:zero_launcher/services/apps_service.dart';
-import 'package:zero_launcher/ui/pages/home_page.dart';
+import 'package:zero_launcher/services/settings_service.dart';
 
-void main() => runApp(
-  MultiProvider(
-    providers: [ChangeNotifierProvider(create: (_) => AppsService())],
-    child: const App(),
-  ),
-);
+void main() {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
+  runApp(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => SettingsService()),
+          ChangeNotifierProvider(create: (_) => AppsService()),
+        ],
+        child: const App(),
+      ),
+    );
+}
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -22,7 +32,8 @@ class App extends StatelessWidget {
           accentColor: const Color(0xff014b4c),
         ),
       ),
-      home: const HomeDrawer(),
+      routes: routes,
+      initialRoute: "/home",
     );
   }
 }
