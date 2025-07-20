@@ -79,10 +79,10 @@ packages:
     dependency: "direct main"
     description:
       name: get_apps
-      sha256: bdf39fb3c48fc26458004a73833124fe9e789ae998b6ed684984d1e09d121937
+      sha256: "0f05aa912572ab0f5c180f2efd2afebf5f2966eba791445f2f22fe933341af4b"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.5"
+    version: "1.0.6"
   leak_tracker:
     dependency: transitive
     description:
