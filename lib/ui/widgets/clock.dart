@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:zero_launcher/services/settings_service.dart';
 
 import '../../helpers/constants.dart';
 
@@ -44,22 +46,38 @@ class _CustomClockState extends State<CustomClock> {
     return Row(
       children: [
         Expanded(
-          child: ListTile(
-            title: Text(
-              "${hour == 0 ? 12 : hour} : $minute\n ${monthName[curTime.month]} ${curTime.day}",
-              style: const TextStyle(
-                color: Colors.white70,
-                height: 1,
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  onTap: (){
+                    final settingService = Provider.of<SettingsService>(context, listen: false);
+                    settingService.switchStyle();
+                  },
+                  child: Icon(Icons.switch_access_shortcut),
+                ),
               ),
-              textAlign: TextAlign.right,
-            ),
-            subtitle: Text(
-              dayName[curTime.weekday % 7],
-              style: const TextStyle(fontSize: 20, color: Colors.white38),
-              textAlign: TextAlign.right,
-            ),
+              ListTile(
+                title: Text(
+                  "${hour == 0 ? 12 : hour} : $minute\n ${monthName[curTime.month]} ${curTime.day}",
+                  style: const TextStyle(
+                    color: Colors.white70,
+                    height: 1,
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.right,
+                ),
+                subtitle: Text(
+                  dayName[curTime.weekday % 7],
+                  style: const TextStyle(fontSize: 20, color: Colors.white38),
+                  textAlign: TextAlign.right,
+                ),
+              ),
+            ],
           ),
         ),
         Padding(
