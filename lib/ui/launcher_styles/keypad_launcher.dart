@@ -71,6 +71,24 @@ class _KeypadLauncherState extends State<KeypadLauncher> {
                          children: apps.map(
                            (app) => InkWell(
                              onTap: () => GetApps().openApp(app.packageName),
+                             onLongPress: () => showModalBottomSheet(context: context, builder: (context) {
+                               return Container(
+                                 height: MediaQuery.of(context).size.height / 2,
+                                 width: MediaQuery.of(context).size.width,
+                                 padding: EdgeInsets.all(20),
+                                 child: ListView(
+                                   children: [
+                                     ListTile(
+                                       onTap: () => GetApps().deleteApp(app.packageName),
+                                       leading: Icon(Icons.remove, color: Colors.redAccent,),
+                                       title: Text("Uninstall", style: TextStyle(color: Colors.redAccent),),
+                                     ),
+                                   ],
+                                 ),
+                               );
+                             },
+                             elevation: 10,
+                           ),
                              child: Container(
                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                                child: Row(

@@ -6,6 +6,7 @@ import 'package:zero_launcher/services/apps_service.dart';
 import 'package:zero_launcher/services/settings_service.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
